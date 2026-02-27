@@ -19,3 +19,4 @@ sed -i 's/putc_unlocked/putc/g' src/util.c
 ```
 
 ### 也可以下载isync官方最新的isync-1.5.1.tar.gz源码包后，使用.patch文件补丁后编译
+[点击查看aerc + isync-netease 收发网易邮件折腾笔记](./aerc-netease.md)
