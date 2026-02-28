@@ -20,3 +20,28 @@ sed -i 's/putc_unlocked/putc/g' src/util.c
 
 ### 也可以下载isync官方最新的isync-1.5.1.tar.gz源码包后，使用.patch文件补丁后编译
 [点击查看aerc + isync-netease 收发网易邮件折腾笔记](./aerc-netease.md)
+
+20260301 在MacBoook Air M4上编译通过，并在 aerc 上正常收发网易邮箱
+
+安装 aerc 邮件客户端：
+`brew install aerc`
+
+在 macOS 上，Homebrew 的 OpenSSL 不在系统默认搜索路径里，必须手动告诉编译器它在哪里。
+
+在 macOS 的 brew 上编译本项目步骤：
+1. 克隆项目到本地
+```
+git clone https://github.com/maichaide/isync-netease-fix.git
+```
+2. 本地编译项目
+
+```
+cd isync-netease-fix
+make clean
+export PKG_CONFIG_PATH="$(brew --prefix openssl@3)/lib/pkgconfig"
+export CPPFLAGS="-I$(brew --prefix openssl@3)/include"
+export LDFLAGS="-L$(brew --prefix openssl@3)/lib"
+./configure
+make
+```
+编译完成后在文件夹 src 下有 mbsync 命令行工具
